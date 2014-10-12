@@ -1,4 +1,4 @@
-## Instructions
+## Run Instructions
 
 Each r file will download the "Individual household electric power consumption Data Set" dataset from the <a href="http://archive.ics.uci.edu/ml/">UC Irvine Machine Learning Repository</a>, create a subset of data from 2007-02-01 and
 2007-02-02 and generate a graph in png format on your working directory.
