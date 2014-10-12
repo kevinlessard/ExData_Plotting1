@@ -1,6 +1,12 @@
+#prepping for file download
+temp <- tempfile()
+fileURL <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+
+#download file
+download.file (fileURL,temp, method="curl")
 
 #load text file into a data table
-data <- read.table("./household_power_consumption.txt", sep = ";", header = TRUE, stringsAsFactors = FALSE)
+data <- read.table(unz(temp, "household_power_consumption.txt"), sep=";", header=TRUE, stringsAsFactors = FALSE)
 #Convert "?" characters into NA
 data[data=="?"] = NA
 #Convert the Date column as class Date
@@ -23,6 +29,6 @@ legend("topright", c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"), lty= 
 
 dev.off()
 
-
+unlink(temp)
 
 

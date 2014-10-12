@@ -1,6 +1,12 @@
+#prepping for file download
+temp <- tempfile()
+fileURL <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+
+#download file
+download.file (fileURL,temp, method="curl")
 
 #load text file into a data table
-data <- read.table("./household_power_consumption.txt", sep = ";", header = TRUE, stringsAsFactors = FALSE)
+data <- read.table(unz(temp, "household_power_consumption.txt"), sep=";", header=TRUE, stringsAsFactors = FALSE)
 #Convert "?" characters into NA
 data[data=="?"] = NA
 #Convert the Date column as class Date
@@ -22,6 +28,6 @@ png(file = "plot2.png")
 plot(subdata$dateTime, subdata$Global_active_power, type="l", ylab="Global Active Power (kilowatts)", xlab="")
 dev.off()
 
-
+unlink(temp)
 
 
